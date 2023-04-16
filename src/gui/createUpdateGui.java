@@ -35,13 +35,6 @@ public class createUpdateGui extends JFrame {
         JLabel bird_image = new JLabel(new ImageIcon(fitImage));
         imagePanel.add(bird_image);
 
-        JMenuBar menuBar = new JMenuBar();
-        JMenu menuBarHelp = new JMenu("Help");
-
-        menuBar.add(menuBarHelp);
-        JMenuItem menuBarHelpAbout = new JMenuItem("About");
-        menuBarHelp.add(menuBarHelpAbout);
-
         JLabel birdDate = new JLabel("Date");
         final JTextField dateTextField = new JTextField(getImageDate(birdImagePath));
         dateTextField.setPreferredSize(new Dimension(100, 20));
@@ -144,7 +137,6 @@ public class createUpdateGui extends JFrame {
             }
         });
 
-        menuPanel.add(menuBar, BorderLayout.NORTH);
         actionPanel.setLayout(new FlowLayout());
         actionPanel.add(birdDate);
         actionPanel.add(dateTextField);

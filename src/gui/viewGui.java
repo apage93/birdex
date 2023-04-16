@@ -32,13 +32,6 @@ public class viewGui extends JFrame {
         JLabel bird_image = new JLabel(new ImageIcon(fitImage));
         imagePanel.add(bird_image);
 
-        JMenuBar menuBar = new JMenuBar();
-        JMenu menuBarHelp = new JMenu("Help");
-
-        menuBar.add(menuBarHelp);
-        JMenuItem menuBarHelpAbout = new JMenuItem("About");
-        menuBarHelp.add(menuBarHelpAbout);
-
         JButton nextButton = new JButton("Next");
         nextButton.setPreferredSize(new Dimension(100, 20));
         nextButton.addMouseListener(new MouseListener() {
@@ -77,7 +70,6 @@ public class viewGui extends JFrame {
             }
         });
 
-        menuPanel.add(menuBar, BorderLayout.NORTH);
         actionPanel.add(nextButton);
         actionPanel.setLayout(new FlowLayout());
 

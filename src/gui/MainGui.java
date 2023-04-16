@@ -27,13 +27,6 @@ public class MainGui extends JFrame {
         choicePanel = new JPanel();
         choicePanel.setLayout(new BorderLayout());
 
-        JMenuBar menuBar = new JMenuBar();
-        JMenu menuBarHelp = new JMenu("Help");
-
-        menuBar.add(menuBarHelp);
-        JMenuItem menuBarHelpAbout = new JMenuItem("About");
-        menuBarHelp.add(menuBarHelpAbout);
-
         JLabel titleBirdex = new JLabel();
         titleBirdex.setIcon(new ImageIcon(ClassLoader.getSystemResource("birdexTitle.png")));
 
@@ -108,7 +101,6 @@ public class MainGui extends JFrame {
             }
         });
 
-        menuPanel.add(menuBar, BorderLayout.NORTH);
         menuPanel.add(titleBirdex, BorderLayout.CENTER);
 
         mainPanel.add(greatHeronPicture, BorderLayout.CENTER);
