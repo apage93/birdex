@@ -28,14 +28,7 @@ public class MainGui extends JFrame {
         choicePanel.setLayout(new BorderLayout());
 
         JMenuBar menuBar = new JMenuBar();
-        JMenu menuBarFile = new JMenu("File");
         JMenu menuBarHelp = new JMenu("Help");
-
-        menuBar.add(menuBarFile);
-        JMenuItem menuBarFileOpen = new JMenuItem("Open");
-        JMenuItem menuBarFileSaveAs = new JMenuItem("Save as");
-        menuBarFile.add(menuBarFileOpen);
-        menuBarFile.add(menuBarFileSaveAs);
 
         menuBar.add(menuBarHelp);
         JMenuItem menuBarHelpAbout = new JMenuItem("About");
