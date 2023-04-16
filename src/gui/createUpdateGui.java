@@ -106,6 +106,35 @@ public class createUpdateGui extends JFrame {
             }
         });
 
+        JButton nextButton = new JButton("Next");
+        renameButton.setPreferredSize(new Dimension(100, 20));
+        renameButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         menuPanel.add(menuBar, BorderLayout.NORTH);
         actionPanel.setLayout(new FlowLayout());
         actionPanel.add(birdDate);
@@ -118,6 +147,7 @@ public class createUpdateGui extends JFrame {
         actionPanel.add(locationTextField);
 
         actionPanel.add(renameButton);
+        actionPanel.add(nextButton);
 
         add(menuPanel, BorderLayout.NORTH);
         add(imagePanel, BorderLayout.CENTER);
