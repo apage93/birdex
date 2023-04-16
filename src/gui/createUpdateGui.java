@@ -106,6 +106,44 @@ public class createUpdateGui extends JFrame {
             }
         });
 
+        JButton nextButton = new JButton("Next");
+        nextButton.setPreferredSize(new Dimension(100, 20));
+        nextButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    deleteImage(imagePanel);
+                    index++;
+
+                    BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
+                    addImage(image, imagePanel);
+                } catch(Exception eo) {
+                    JOptionPane.showMessageDialog(null, "All Done!");
+                    System.exit(0);
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         menuPanel.add(menuBar, BorderLayout.NORTH);
         actionPanel.setLayout(new FlowLayout());
         actionPanel.add(birdDate);
@@ -118,6 +156,7 @@ public class createUpdateGui extends JFrame {
         actionPanel.add(locationTextField);
 
         actionPanel.add(renameButton);
+        actionPanel.add(nextButton);
 
         add(menuPanel, BorderLayout.NORTH);
         add(imagePanel, BorderLayout.CENTER);
