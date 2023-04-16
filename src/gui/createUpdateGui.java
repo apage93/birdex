@@ -137,6 +137,44 @@ public class createUpdateGui extends JFrame {
             }
         });
 
+        JButton rotateButton = new JButton("Rotate");
+        rotateButton.setPreferredSize(new Dimension(100, 20));
+        rotateButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    deleteImage(imagePanel);
+                    index++;
+
+                    BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
+                    addImage(image, imagePanel);
+                } catch(Exception eo) {
+                    JOptionPane.showMessageDialog(null, "All Done!");
+                    System.exit(0);
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         actionPanel.setLayout(new FlowLayout());
         actionPanel.add(birdDate);
         actionPanel.add(dateTextField);
@@ -149,6 +187,7 @@ public class createUpdateGui extends JFrame {
 
         actionPanel.add(renameButton);
         actionPanel.add(nextButton);
+        actionPanel.add(rotateButton);
 
         add(menuPanel, BorderLayout.NORTH);
         add(imagePanel, BorderLayout.CENTER);

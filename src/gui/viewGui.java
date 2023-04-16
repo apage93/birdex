@@ -70,7 +70,46 @@ public class viewGui extends JFrame {
             }
         });
 
+        JButton rotateButton = new JButton("Rotate");
+        rotateButton.setPreferredSize(new Dimension(100, 20));
+        rotateButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    deleteImage(imagePanel);
+                    index++;
+
+                    BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
+                    addImage(image, imagePanel);
+                } catch(Exception eo) {
+                    JOptionPane.showMessageDialog(null, "All Done!");
+                    System.exit(0);
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         actionPanel.add(nextButton);
+        actionPanel.add(rotateButton);
         actionPanel.setLayout(new FlowLayout());
 
         add(menuPanel, BorderLayout.NORTH);
