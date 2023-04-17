@@ -42,7 +42,6 @@ public class imageInformationHelper {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd");
         return formatter.format(date);
     }
-
     public static String getImageLocation(String birdImagePath) {
         try {
             String location_from_gps_points = getImageLocationViewMode(birdImagePath);
