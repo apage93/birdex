@@ -44,20 +44,7 @@ public class imageInformationHelper {
     }
     public static String getImageLocation(String birdImagePath) {
         try {
-            Image image = new javaxt.io.Image(birdImagePath);
-            double[] gps = image.getGPSCoordinate();
-            String lon = String.valueOf(gps[0]);
-            String lat = String.valueOf(gps[1]);
-
-            ProcessBuilder builder = new ProcessBuilder(System.getProperty("user.dir") + "\\python\\venv\\Scripts\\python.exe", System.getProperty("user.dir") + "\\src\\imageInformation\\gps_conversion.py", lon, lat);
-            Process process = builder.start();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.ISO_8859_1));
-
-            String location_from_gps_points = reader.readLine();
-            System.out.println(location_from_gps_points);
-            location_from_gps_points = Normalizer.normalize(location_from_gps_points, Normalizer.Form.NFD);
-            location_from_gps_points = location_from_gps_points.replaceAll("\\p{InCombiningDiacriticalMarks}", "");
+            String location_from_gps_points = getImageLocationViewMode(birdImagePath);
             String[] location = location_from_gps_points.split(",");
             String region = location[location.length - 4];
             String strip_region_dash = region.replaceAll("-", "_");
@@ -82,7 +69,6 @@ public class imageInformationHelper {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.ISO_8859_1));
 
             String location_from_gps_points = reader.readLine();
-            System.out.println(location_from_gps_points);
             location_from_gps_points = Normalizer.normalize(location_from_gps_points, Normalizer.Form.NFD);
             location_from_gps_points = location_from_gps_points.replaceAll("\\p{InCombiningDiacriticalMarks}", "");
 
