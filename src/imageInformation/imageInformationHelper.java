@@ -59,7 +59,10 @@ public class imageInformationHelper {
             location_from_gps_points = Normalizer.normalize(location_from_gps_points, Normalizer.Form.NFD);
             location_from_gps_points = location_from_gps_points.replaceAll("\\p{InCombiningDiacriticalMarks}", "");
             String[] location = location_from_gps_points.split(",");
-            return location[location.length - 4] + "_" + location[location.length - 3] + "_" + location[location.length - 1];
+            String region = location[location.length - 4];
+            String strip_region_dash = region.replaceAll("-", "_");
+            String strip_region_spaces = strip_region_dash.replaceAll(" ", "");
+            return strip_region_spaces.replaceAll("'", "_");
 
         } catch (Exception e) {
             return "";
