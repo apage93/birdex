@@ -69,7 +69,6 @@ public class imageInformationHelper {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.ISO_8859_1));
 
             String location_from_gps_points = reader.readLine();
-            System.out.println(location_from_gps_points);
             location_from_gps_points = Normalizer.normalize(location_from_gps_points, Normalizer.Form.NFD);
             location_from_gps_points = location_from_gps_points.replaceAll("\\p{InCombiningDiacriticalMarks}", "");
 
