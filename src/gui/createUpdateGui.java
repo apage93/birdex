@@ -68,7 +68,7 @@ public class createUpdateGui extends JFrame {
                     source = Paths.get(String.valueOf(birdImages.get(index)));
 
                     dateTextField.setText(getImageDate(source.toString()));
-                    getImageLocation(source.toString());
+                    locationTextField.setText(getImageLocation(source.toString()));
 
                     BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
                     addImage(image, imagePanel);
@@ -107,6 +107,11 @@ public class createUpdateGui extends JFrame {
                 try {
                     deleteImage(imagePanel);
                     index++;
+
+                    Path source = Paths.get(String.valueOf(birdImages.get(index)));
+
+                    dateTextField.setText(getImageDate(source.toString()));
+                    locationTextField.setText(getImageLocation(source.toString()));
 
                     BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
                     addImage(image, imagePanel);

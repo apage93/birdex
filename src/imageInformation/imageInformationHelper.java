@@ -5,8 +5,12 @@ import javaxt.io.Image;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -42,9 +46,21 @@ public class imageInformationHelper {
         try {
             Image image = new javaxt.io.Image(birdImagePath);
             double[] gps = image.getGPSCoordinate();
-            System.out.println(gps[0]);
-            System.out.println(gps[1]);
-            return "";
+            String lon = String.valueOf(gps[0]);
+            String lat = String.valueOf(gps[1]);
+
+            ProcessBuilder builder = new ProcessBuilder(System.getProperty("user.dir") + "\\python\\venv\\Scripts\\python.exe", System.getProperty("user.dir") + "\\src\\imageInformation\\gps_conversion.py", lon, lat);
+            Process process = builder.start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.ISO_8859_1));
+
+            String location_from_gps_points = reader.readLine();
+            System.out.println(location_from_gps_points);
+            location_from_gps_points = Normalizer.normalize(location_from_gps_points, Normalizer.Form.NFD);
+            location_from_gps_points = location_from_gps_points.replaceAll("\\p{InCombiningDiacriticalMarks}", "");
+            String[] location = location_from_gps_points.split(",");
+            return location[location.length - 4] + "_" + location[location.length - 3] + "_" + location[location.length - 1];
+
         } catch (Exception e) {
             return "";
         }
