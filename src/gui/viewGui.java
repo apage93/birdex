@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import static helper.helper.*;
 import static imageInformation.imageInformationHelper.*;
 
 public class viewGui extends JFrame {
@@ -85,23 +86,9 @@ public class viewGui extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    deleteImage(imagePanel);
-
-                    BufferedImage imageToRotate = ImageIO.read(new File(birdImages.get(index)));
-
-                    int widthOfImage = imageToRotate.getWidth();
-                    int heightOfImage = imageToRotate.getHeight();
-                    int typeOfImage = imageToRotate.getType();
-
-                    BufferedImage newImageFromBuffer = new BufferedImage(widthOfImage, heightOfImage, typeOfImage);
-
-                    Graphics2D graphics2D = newImageFromBuffer.createGraphics();
-                    graphics2D.rotate(Math.toRadians(90), widthOfImage / 2, heightOfImage / 2);
-                    graphics2D.drawImage(imageToRotate, null, 0, 0);
-
-                    addImage(newImageFromBuffer, imagePanel);
-                } catch(Exception eo) {
-                    System.exit(0);
+                    rotateButton(ImageIO.read(new File(birdImages.get(index))), imagePanel);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
 
