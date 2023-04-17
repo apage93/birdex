@@ -9,17 +9,18 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import static imageInformation.imageInformationHelper.addImage;
-import static imageInformation.imageInformationHelper.deleteImage;
+import static imageInformation.imageInformationHelper.*;
 
 public class viewGui extends JFrame {
     int index = 0;
-    JPanel menuPanel, imagePanel, actionPanel;
+    JPanel gps_pannel, imagePanel, actionPanel;
     viewGui(String birdImagePath, final ArrayList<String> birdImages) throws IOException {
-        menuPanel = new JPanel();
-        menuPanel.setLayout(new BorderLayout());
+        gps_pannel = new JPanel();
+        gps_pannel.setLayout(new BorderLayout());
 
         imagePanel = new JPanel();
         imagePanel.setLayout(new BorderLayout());
@@ -32,17 +33,26 @@ public class viewGui extends JFrame {
         JLabel bird_image = new JLabel(new ImageIcon(fitImage));
         imagePanel.add(bird_image);
 
+        Path source = Paths.get(String.valueOf(birdImages.get(index)));
+        final JLabel label = new JLabel(getImageLocationViewMode(source.toString()));
+        gps_pannel.add(label);
+
         JButton nextButton = new JButton("Next");
         nextButton.setPreferredSize(new Dimension(100, 20));
         nextButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
+                    label.setText("");
                     deleteImage(imagePanel);
                     index++;
 
                     BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
                     addImage(image, imagePanel);
+
+                    Path source = Paths.get(String.valueOf(birdImages.get(index)));
+                    label.setText(getImageLocationViewMode(source.toString()));
+                    gps_pannel.add(label);
                 } catch(Exception eo) {
                     JOptionPane.showMessageDialog(null, "All Done!");
                     System.exit(0);
@@ -112,7 +122,7 @@ public class viewGui extends JFrame {
         actionPanel.add(rotateButton);
         actionPanel.setLayout(new FlowLayout());
 
-        add(menuPanel, BorderLayout.NORTH);
+        add(gps_pannel, BorderLayout.NORTH);
         add(imagePanel, BorderLayout.CENTER);
         add(actionPanel, BorderLayout.SOUTH);
     }
