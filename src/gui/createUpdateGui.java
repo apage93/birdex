@@ -142,6 +142,53 @@ public class createUpdateGui extends JFrame {
             }
         });
 
+        JButton rotateButton = new JButton("Rotate");
+        rotateButton.setPreferredSize(new Dimension(100, 20));
+        rotateButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    deleteImage(imagePanel);
+
+                    BufferedImage imageToRotate = ImageIO.read(new File(birdImages.get(index)));
+
+                    int widthOfImage = imageToRotate.getWidth();
+                    int heightOfImage = imageToRotate.getHeight();
+                    int typeOfImage = imageToRotate.getType();
+
+                    BufferedImage newImageFromBuffer = new BufferedImage(widthOfImage, heightOfImage, typeOfImage);
+
+                    Graphics2D graphics2D = newImageFromBuffer.createGraphics();
+                    graphics2D.rotate(Math.toRadians(90), widthOfImage / 2, heightOfImage / 2);
+                    graphics2D.drawImage(imageToRotate, null, 0, 0);
+
+                    addImage(newImageFromBuffer, imagePanel);
+                } catch(Exception eo) {
+                    System.exit(0);
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         actionPanel.setLayout(new FlowLayout());
         actionPanel.add(birdDate);
         actionPanel.add(dateTextField);
@@ -154,6 +201,7 @@ public class createUpdateGui extends JFrame {
 
         actionPanel.add(renameButton);
         actionPanel.add(nextButton);
+        actionPanel.add(rotateButton);
 
         add(menuPanel, BorderLayout.NORTH);
         add(imagePanel, BorderLayout.CENTER);

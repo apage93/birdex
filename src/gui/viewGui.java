@@ -28,8 +28,8 @@ public class viewGui extends JFrame {
         actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
 
-        BufferedImage image = ImageIO.read(new File(birdImagePath));
-        java.awt.Image fitImage = image.getScaledInstance(1000,1000, java.awt.Image.SCALE_SMOOTH);
+        final BufferedImage[] image = {ImageIO.read(new File(birdImagePath))};
+        java.awt.Image fitImage = image[0].getScaledInstance(1000,1000, java.awt.Image.SCALE_SMOOTH);
         JLabel bird_image = new JLabel(new ImageIcon(fitImage));
         imagePanel.add(bird_image);
 
@@ -80,7 +80,55 @@ public class viewGui extends JFrame {
             }
         });
 
+        JButton rotateButton = new JButton("Rotate");
+        rotateButton.setPreferredSize(new Dimension(100, 20));
+        rotateButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    deleteImage(imagePanel);
+
+                    BufferedImage imageToRotate = ImageIO.read(new File(birdImages.get(index)));
+
+                    int widthOfImage = imageToRotate.getWidth();
+                    int heightOfImage = imageToRotate.getHeight();
+                    int typeOfImage = imageToRotate.getType();
+
+                    BufferedImage newImageFromBuffer = new BufferedImage(widthOfImage, heightOfImage, typeOfImage);
+
+                    Graphics2D graphics2D = newImageFromBuffer.createGraphics();
+                    graphics2D.rotate(Math.toRadians(90), widthOfImage / 2, heightOfImage / 2);
+                    graphics2D.drawImage(imageToRotate, null, 0, 0);
+
+                    addImage(newImageFromBuffer, imagePanel);
+                } catch(Exception eo) {
+                    System.exit(0);
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         actionPanel.add(nextButton);
+        actionPanel.add(rotateButton);
         actionPanel.setLayout(new FlowLayout());
 
         add(gps_pannel, BorderLayout.NORTH);
