@@ -63,7 +63,7 @@ public class imageInformationHelper {
             String lon = String.valueOf(gps[0]);
             String lat = String.valueOf(gps[1]);
 
-            ProcessBuilder builder = new ProcessBuilder("python", "src\\imageInformation\\gps_conversion.py", lon, lat);
+            ProcessBuilder builder = new ProcessBuilder("python", System.getProperty("user.dir") + "\\src\\imageInformation\\gps_conversion.py", lon, lat);
             Process process = builder.start();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.ISO_8859_1));
@@ -75,6 +75,7 @@ public class imageInformationHelper {
             return location_from_gps_points;
 
         } catch (Exception e) {
+            System.out.println(e);
             return "";
         }
     }
