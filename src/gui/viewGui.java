@@ -123,7 +123,7 @@ public class viewGui extends JFrame {
     }
     public static void createViewGui(String bird_image, ArrayList<String> birdImages) throws IOException {
         viewGui mainFrame = new viewGui(bird_image, birdImages);
-        mainFrame.setSize(1400, 1000);
+        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setTitle("View Birdex");
         mainFrame.setVisible(true);
