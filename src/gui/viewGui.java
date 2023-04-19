@@ -29,9 +29,7 @@ public class viewGui extends JFrame {
         actionPanel.setLayout(new BorderLayout());
 
         final BufferedImage[] image = {ImageIO.read(new File(birdImagePath))};
-        java.awt.Image fitImage = image[0].getScaledInstance(1000,1000, java.awt.Image.SCALE_SMOOTH);
-        JLabel bird_image = new JLabel(new ImageIcon(fitImage));
-        imagePanel.add(bird_image);
+        addImage(image[0], imagePanel);
 
         Path source = Paths.get(String.valueOf(birdImages.get(index)));
         final JLabel label = new JLabel(getImageLocationViewMode(source.toString()));
