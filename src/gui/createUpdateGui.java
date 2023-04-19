@@ -30,10 +30,8 @@ public class createUpdateGui extends JFrame {
         actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
 
-        BufferedImage image = ImageIO.read(new File(birdImagePath));
-        java.awt.Image fitImage = image.getScaledInstance(1000,1000, java.awt.Image.SCALE_SMOOTH);
-        JLabel bird_image = new JLabel(new ImageIcon(fitImage));
-        imagePanel.add(bird_image);
+        final BufferedImage[] image = {ImageIO.read(new File(birdImagePath))};
+        addImage(image[0], imagePanel);
 
         JLabel birdDate = new JLabel("Date");
         final JTextField dateTextField = new JTextField(getImageDate(birdImagePath));
