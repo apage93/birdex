@@ -63,7 +63,8 @@ public class imageInformationHelper {
             String lon = String.valueOf(gps[0]);
             String lat = String.valueOf(gps[1]);
 
-            ProcessBuilder builder = new ProcessBuilder("python", System.getProperty("user.dir") + "\\src\\imageInformation\\gps_conversion.py", lon, lat);
+            System.out.println(System.getProperty("user.dir"));
+            ProcessBuilder builder = new ProcessBuilder(System.getProperty("user.dir") + "\\python.exe", System.getProperty("user.dir") + "\\src\\imageInformation\\gps_conversion.py", lon, lat);
             Process process = builder.start();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.ISO_8859_1));
