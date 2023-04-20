@@ -91,8 +91,17 @@ public class imageInformationHelper {
     public static void addImage(BufferedImage image, JPanel imagePanel, double width, double height){
         double imageWidth = image.getWidth();
         double imageHeight = image.getHeight();
-        double resizedWidth = width/imageWidth*imageWidth;
-        double resizedHeight = height/imageHeight*imageHeight;
+        double resizedWidth;
+        double resizedHeight;
+
+        if(imageWidth > width || imageHeight > height) {
+            resizedWidth = width / imageWidth * imageWidth;
+            resizedHeight = height / imageHeight * imageHeight;
+        }
+        else {
+            resizedWidth = imageWidth;
+            resizedHeight = imageHeight;
+        }
         java.awt.Image fitImage = image.getScaledInstance((int)resizedWidth, (int)resizedHeight, java.awt.Image.SCALE_SMOOTH);
         JLabel bird_image = new JLabel(new ImageIcon(fitImage));
         imagePanel.add(bird_image);
