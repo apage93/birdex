@@ -31,7 +31,7 @@ public class createUpdateGui extends JFrame {
         actionPanel.setLayout(new BorderLayout());
 
         final BufferedImage[] image = {ImageIO.read(new File(birdImagePath))};
-        addImage(image[0], imagePanel);
+        addImage(image[0], imagePanel, G.mainWidth, G.mainHeight);
 
         JLabel birdDate = new JLabel("Date");
         final JTextField dateTextField = new JTextField(getImageDate(birdImagePath));
@@ -69,7 +69,7 @@ public class createUpdateGui extends JFrame {
                     locationTextField.setText(getImageLocation(source.toString()));
 
                     BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
-                    addImage(image, imagePanel);
+                    addImage(image, imagePanel, G.mainWidth, G.mainHeight);
                 } catch(Exception eo) {
                     JOptionPane.showMessageDialog(null, "All Done!");
                     System.exit(0);
@@ -112,7 +112,7 @@ public class createUpdateGui extends JFrame {
                     locationTextField.setText(getImageLocation(source.toString()));
 
                     BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
-                    addImage(image, imagePanel);
+                    addImage(image, imagePanel, G.mainWidth, G.mainHeight);
                 } catch(Exception eo) {
                     JOptionPane.showMessageDialog(null, "All Done!");
                     System.exit(0);

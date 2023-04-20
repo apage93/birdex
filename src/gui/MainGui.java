@@ -114,9 +114,12 @@ public class MainGui extends JFrame {
     }
     public static void createMainGui() {
         MainGui mainFrame = new MainGui();
-        mainFrame.setSize(1400, 1000);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setTitle("Birdex");
         mainFrame.setVisible(true);
+        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        G.mainHeight = mainFrame.getHeight();
+        G.mainWidth = mainFrame.getWidth();
+        mainFrame.setSize(1400, 1000);
     }
 }

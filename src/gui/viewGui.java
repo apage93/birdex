@@ -29,7 +29,7 @@ public class viewGui extends JFrame {
         actionPanel.setLayout(new BorderLayout());
 
         final BufferedImage[] image = {ImageIO.read(new File(birdImagePath))};
-        addImage(image[0], imagePanel);
+        addImage(image[0], imagePanel, G.mainWidth, G.mainHeight);
 
         Path source = Paths.get(String.valueOf(birdImages.get(index)));
         final JLabel label = new JLabel(getImageLocationViewMode(source.toString()));
@@ -46,7 +46,7 @@ public class viewGui extends JFrame {
                     index++;
 
                     BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
-                    addImage(image, imagePanel);
+                    addImage(image, imagePanel, G.mainWidth, G.mainHeight);
 
                     Path source = Paths.get(String.valueOf(birdImages.get(index)));
                     label.setText(getImageLocationViewMode(source.toString()));

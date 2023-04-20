@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import static imageInformation.imageInformationHelper.addImage;
 import static imageInformation.imageInformationHelper.deleteImage;
+import gui.G;
 
 public class helper {
     public static void rotateButton(BufferedImage imageToRotate, JPanel imagePanel){
@@ -22,7 +23,7 @@ public class helper {
             graphics2D.rotate(Math.toRadians(90), widthOfImage / 2, heightOfImage / 2);
             graphics2D.drawImage(imageToRotate, null, 0, 0);
 
-            addImage(newImageFromBuffer, imagePanel);
+            addImage(newImageFromBuffer, imagePanel, G.mainWidth, G.mainHeight);
         } catch(Exception eo) {
             System.exit(0);
         }
