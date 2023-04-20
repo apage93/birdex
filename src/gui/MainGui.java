@@ -121,5 +121,6 @@ public class MainGui extends JFrame {
         G.mainHeight = mainFrame.getHeight();
         G.mainWidth = mainFrame.getWidth();
         mainFrame.setSize(1400, 1000);
+        mainFrame.setLocationRelativeTo(null);
     }
 }
