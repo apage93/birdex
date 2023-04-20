@@ -52,7 +52,8 @@ public class viewGui extends JFrame {
                     gps_pannel.add(label);
                 } catch(Exception eo) {
                     JOptionPane.showMessageDialog(null, "All Done!");
-                    System.exit(0);
+                    dispose();
+                    MainGui.createMainGui();
                 }
             }
 
