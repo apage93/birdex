@@ -34,6 +34,52 @@ public class viewGui extends JFrame {
         final JLabel label = new JLabel(getImageLocationViewMode(source.toString()));
         gps_pannel.add(label);
 
+        JButton previousButton = new JButton("Previous");
+        previousButton.setPreferredSize(new Dimension(100, 20));
+        previousButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (index != 0) {
+                    try {
+                        label.setText("");
+                        deleteImage(imagePanel);
+                        index--;
+
+                        G.image = ImageIO.read(new File(birdImages.get(index)));
+                        addImage(G.image, imagePanel, G.mainWidth, G.mainHeight);
+
+                        Path source = Paths.get(String.valueOf(birdImages.get(index)));
+                        label.setText(getImageLocationViewMode(source.toString()));
+                        gps_pannel.add(label);
+                    } catch (Exception eo) {
+                        JOptionPane.showMessageDialog(null, "All Done!");
+                        dispose();
+                        MainGui.createMainGui();
+                    }
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         JButton nextButton = new JButton("Next");
         nextButton.setPreferredSize(new Dimension(100, 20));
         nextButton.addMouseListener(new MouseListener() {
@@ -107,6 +153,7 @@ public class viewGui extends JFrame {
             }
         });
 
+        actionPanel.add(previousButton);
         actionPanel.add(nextButton);
         actionPanel.add(rotateButton);
         actionPanel.setLayout(new FlowLayout());
