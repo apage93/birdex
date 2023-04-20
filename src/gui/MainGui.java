@@ -43,7 +43,7 @@ public class MainGui extends JFrame {
                 dispose();
                 birdImages = getBirdsList(myBirdex);
                 try {
-                    viewGui.createViewGui(birdImages.get(0), birdImages);
+                    viewGui.createViewGui(birdImages);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

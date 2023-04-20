@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,8 +29,8 @@ public class createUpdateGui extends JFrame {
         actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
 
-        final BufferedImage[] image = {ImageIO.read(new File(birdImagePath))};
-        addImage(image[0], imagePanel, G.mainWidth, G.mainHeight);
+        G.image = ImageIO.read(new File(birdImages.get(0)));
+        addImage(G.image, imagePanel, G.mainWidth, G.mainHeight);
 
         JLabel birdDate = new JLabel("Date");
         final JTextField dateTextField = new JTextField(getImageDate(birdImagePath));
@@ -68,8 +67,8 @@ public class createUpdateGui extends JFrame {
                     dateTextField.setText(getImageDate(source.toString()));
                     locationTextField.setText(getImageLocation(source.toString()));
 
-                    BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
-                    addImage(image, imagePanel, G.mainWidth, G.mainHeight);
+                    G.image = ImageIO.read(new File(birdImages.get(index)));
+                    addImage(G.image, imagePanel, G.mainWidth, G.mainHeight);
                 } catch(Exception eo) {
                     JOptionPane.showMessageDialog(null, "All Done!");
                     System.exit(0);
@@ -111,8 +110,8 @@ public class createUpdateGui extends JFrame {
                     dateTextField.setText(getImageDate(source.toString()));
                     locationTextField.setText(getImageLocation(source.toString()));
 
-                    BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
-                    addImage(image, imagePanel, G.mainWidth, G.mainHeight);
+                    G.image = ImageIO.read(new File(birdImages.get(index)));
+                    addImage(G.image, imagePanel, G.mainWidth, G.mainHeight);
                 } catch(Exception eo) {
                     JOptionPane.showMessageDialog(null, "All Done!");
                     System.exit(0);
@@ -145,11 +144,7 @@ public class createUpdateGui extends JFrame {
         rotateButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                try {
-                    rotateButton(ImageIO.read(new File(birdImages.get(index))), imagePanel);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                rotateButton(G.image, imagePanel);
             }
 
             @Override
