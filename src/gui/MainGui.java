@@ -40,12 +40,18 @@ public class MainGui extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 ArrayList<String> birdImages;
                 File[] myBirdex = fileChooser.generateFileChooser();
-                dispose();
-                birdImages = getBirdsList(myBirdex);
-                try {
-                    viewGui.createViewGui(birdImages);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                if (myBirdex.length == 0) {
+                    JOptionPane.showMessageDialog(null, "No pictures",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    dispose();
+                    birdImages = getBirdsList(myBirdex);
+                    try {
+                        viewGui.createViewGui(birdImages);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
 
