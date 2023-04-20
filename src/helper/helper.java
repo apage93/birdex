@@ -23,6 +23,7 @@ public class helper {
             graphics2D.rotate(Math.toRadians(90), widthOfImage / 2, heightOfImage / 2);
             graphics2D.drawImage(imageToRotate, null, 0, 0);
 
+            G.image = newImageFromBuffer;
             addImage(newImageFromBuffer, imagePanel, G.mainWidth, G.mainHeight);
         } catch(Exception eo) {
             System.exit(0);

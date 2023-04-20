@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,7 +17,7 @@ import static imageInformation.imageInformationHelper.*;
 public class viewGui extends JFrame {
     int index = 0;
     JPanel gps_pannel, imagePanel, actionPanel;
-    viewGui(String birdImagePath, final ArrayList<String> birdImages) throws IOException {
+    viewGui(final ArrayList<String> birdImages) throws IOException {
         gps_pannel = new JPanel();
         gps_pannel.setLayout(new BorderLayout());
 
@@ -28,8 +27,8 @@ public class viewGui extends JFrame {
         actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
 
-        final BufferedImage[] image = {ImageIO.read(new File(birdImagePath))};
-        addImage(image[0], imagePanel, G.mainWidth, G.mainHeight);
+        G.image = ImageIO.read(new File(birdImages.get(0)));
+        addImage(G.image, imagePanel, G.mainWidth, G.mainHeight);
 
         Path source = Paths.get(String.valueOf(birdImages.get(index)));
         final JLabel label = new JLabel(getImageLocationViewMode(source.toString()));
@@ -45,8 +44,8 @@ public class viewGui extends JFrame {
                     deleteImage(imagePanel);
                     index++;
 
-                    BufferedImage image = ImageIO.read(new File(birdImages.get(index)));
-                    addImage(image, imagePanel, G.mainWidth, G.mainHeight);
+                    G.image = ImageIO.read(new File(birdImages.get(index)));
+                    addImage(G.image, imagePanel, G.mainWidth, G.mainHeight);
 
                     Path source = Paths.get(String.valueOf(birdImages.get(index)));
                     label.setText(getImageLocationViewMode(source.toString()));
@@ -83,11 +82,7 @@ public class viewGui extends JFrame {
         rotateButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                try {
-                    rotateButton(ImageIO.read(new File(birdImages.get(index))), imagePanel);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                rotateButton(G.image, imagePanel);
             }
 
             @Override
@@ -119,8 +114,8 @@ public class viewGui extends JFrame {
         add(imagePanel, BorderLayout.CENTER);
         add(actionPanel, BorderLayout.SOUTH);
     }
-    public static void createViewGui(String bird_image, ArrayList<String> birdImages) throws IOException {
-        viewGui mainFrame = new viewGui(bird_image, birdImages);
+    public static void createViewGui(ArrayList<String> birdImages) throws IOException {
+        viewGui mainFrame = new viewGui(birdImages);
         mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setTitle("View Birdex");
