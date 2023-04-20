@@ -71,7 +71,8 @@ public class createUpdateGui extends JFrame {
                     addImage(G.image, imagePanel, G.mainWidth, G.mainHeight);
                 } catch(Exception eo) {
                     JOptionPane.showMessageDialog(null, "All Done!");
-                    System.exit(0);
+                    dispose();
+                    MainGui.createMainGui();
                 }
             }
 
