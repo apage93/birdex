@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 public class imageInformationHelper {
     public static boolean isImage(String image_name) {
-        Pattern pattern = Pattern.compile(".(?:jpeg|jpg|tiff|tif|png)$");
+        Pattern pattern = Pattern.compile(".(?:jpeg|jpg|tiff|tif|png|JPEG|JPG|TIFF|TIF|PNG)$");
         Matcher matcher = pattern.matcher(image_name);
         return matcher.find();
     }
