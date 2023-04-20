@@ -45,12 +45,18 @@ public class MainGui extends JFrame {
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    dispose();
                     birdImages = getBirdsList(myBirdex);
-                    try {
-                        viewGui.createViewGui(birdImages);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
+                    if (birdImages.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No pictures",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else {
+                        dispose();
+                        try {
+                            viewGui.createViewGui(birdImages);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
             }
